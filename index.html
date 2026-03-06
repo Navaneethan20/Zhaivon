@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="description" content="Zhaivon Digits — Chennai-based digital agency. Web development, digital marketing & brand identity for growing businesses.">
 <meta name="keywords" content="web development Chennai, digital marketing agency, branding, website design India, Zhaivon Digits, SEO">
 <meta property="og:title" content="Zhaivon Digits — Digital Agency Chennai">
@@ -12,7 +12,36 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
+/* --- CTA POPUP RESPONSIVE --- */
+@media (max-width: 600px) {
+  #cta-popup > div {
+    padding: 1.5rem 0.7rem !important;
+    max-width: 98vw !important;
+    width: 98vw !important;
+    border-radius: 0.8rem !important;
+    font-size: 0.97rem !important;
+  }
+  #cta-popup h2 {
+    font-size: 1.2rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+  #cta-popup p, #cta-popup label, #cta-popup textarea, #cta-popup input, #cta-popup select, #cta-popup button {
+    font-size: 0.92rem !important;
+  }
+  #cta-popup form > div {
+    margin-bottom: 0.7rem !important;
+  }
+  #cta-popup button[type="submit"] {
+    padding: 0.8rem !important;
+    font-size: 0.95rem !important;
+    border-radius: 0.5rem !important;
+  }
+  #cta-popup textarea {
+    min-height: 70px !important;
+  }
+}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{max-width:100vw;overflow-x:hidden;}
 :root{--blk:#080A0F;--wht:#F5F2EE;--gold:#C9A84C;--goldl:#E8C76A;--golda:rgba(201,168,76,0.15);--mut:#6B6860;--bdr:rgba(201,168,76,0.2);--glass:rgba(8,10,15,0.82);--accent:#4C9AC9;--p:4rem}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{font-family:'DM Sans',sans-serif;background:var(--blk);color:var(--wht);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
@@ -102,11 +131,16 @@ transform:translateY(-1px);
 }
 
 .hbg{
+
 display:none;
 flex-direction:column;
 gap:6px;
 cursor:pointer;
 padding:4px;
+background:transparent;
+border:none;
+outline:none;
+z-index:10000;
 }
 
 .hbg span{
@@ -116,6 +150,7 @@ background:var(--wht);
 border-radius:2px;
 transition:all .35s cubic-bezier(.77,0,.18,1);
 display:block;
+will-change:transform,opacity;
 }
 
 body{
@@ -124,11 +159,14 @@ padding-top:100px;
 
 /* MOBILE NAV */
 .mn{display:none;position:fixed;inset:0;background:var(--blk);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem}
-.mn.op{display:flex}
-.mn a{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--wht);letter-spacing:.06em;transition:color .3s,transform .3s}
-.mn a:hover{color:var(--gold);transform:translateX(8px)}
-.mn-close{position:absolute;top:1.5rem;right:1.5rem;background:none;color:var(--mut);font-size:1.4rem;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--bdr);transition:all .3s}
+.mn.op{display:flex;animation:mnOpen .35s cubic-bezier(.77,0,.18,1);}
+.mn a{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--wht);letter-spacing:.06em;transition:color .3s,transform .3s;padding:0.5em 1.2em;border-radius:8px;outline:none;}
+.mn a:focus{background:rgba(201,168,76,0.12);color:var(--gold);}
+.mn a:hover{color:var(--gold);transform:translateX(8px);background:rgba(201,168,76,0.08);}
+.mn-close{position:absolute;top:1.5rem;right:1.5rem;background:none;color:var(--mut);font-size:1.4rem;cursor:pointer;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid var(--bdr);transition:all .3s;border-radius:50%;}
+.mn-close:focus{outline:2px solid var(--gold);}
 .mn-close:hover{color:var(--gold);border-color:var(--gold)}
+@keyframes mnOpen{from{opacity:0;transform:scale(0.98);}to{opacity:1;transform:scale(1);}}
 
 /* HERO */
 #home{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 var(--p) 6rem;position:relative;overflow:hidden}
@@ -395,7 +433,13 @@ footer{border-top:1px solid var(--bdr);padding:4rem var(--p)}
   width:100%;
   height:100%;
   object-fit:cover;
+  max-width:100%;
+  max-height:100%;
+  display:block;
 }
+  max-width:100%;
+  height:auto;
+  display:block;
 
 .po{
   position:absolute;
@@ -509,7 +553,7 @@ section{opacity:0;transform:translateY(40px)}
   .h-bot{flex-direction:column;align-items:flex-start;gap:1.8rem}
   .h-desc{max-width:100%;font-size:.95rem}
   .h-acts{flex-direction:column;align-items:stretch;gap:.8rem;width:100%}
-  .bp,.bg{justify-content:center;padding:.95rem 1.5rem}
+  .bp,.bg{justify-content:center;padding:1.1rem 1.5rem;min-height:48px;font-size:1.1rem;}
   .h-stats,.h-scroll{display:none}
   section{padding:4rem var(--p)}
   .st{font-size:clamp(2rem,8.5vw,3rem)}
@@ -552,7 +596,7 @@ section{opacity:0;transform:translateY(40px)}
   .bl-gr{gap:1.2rem}
   .tc-gr{gap:1.2rem}
   .h-acts{gap:.7rem}
-  .bp,.bg{font-size:.8rem;padding:.9rem 1.2rem}
+  .bp,.bg{font-size:.95rem;padding:1rem 1.2rem;min-height:44px;}
   .pf-fi .fb{padding:.45rem 1rem;font-size:.7rem}
 }
 @media(max-width:480px){
@@ -590,7 +634,7 @@ section{opacity:0;transform:translateY(40px)}
   .st{font-size:clamp(1.7rem,11vw,2.2rem)}
   .sb{padding:1.8rem var(--p);gap:.8rem}
   .sb-n{font-size:clamp(2rem,11vw,3rem)}
-  .bp,.bg{padding:.8rem 1rem;font-size:.78rem}
+  .bp,.bg{padding:.9rem 1rem;font-size:.9rem;min-height:40px;}
   .sc,.tc,.prc{padding:1.5rem 1rem}.bb{padding:1rem}
   footer{padding:2.5rem var(--p)}.ft-bt{gap:.6rem}
   .fg{margin-bottom:1rem}
@@ -605,7 +649,7 @@ section{opacity:0;transform:translateY(40px)}
   .nl{font-size:1.1rem}
   .sb{grid-template-columns:1fr;gap:.8rem;padding:1.5rem var(--p)}
   .sc,.prc{padding:1.2rem var(--p)}
-  .bp,.bg{padding:.75rem .9rem;font-size:.75rem}
+  .bp,.bg{padding:.8rem .9rem;font-size:.85rem;min-height:36px;}
   .mn a{font-size:2rem}.mn{gap:1.5rem}
   .bt{height:120px}
   footer{padding:2rem var(--p)}
@@ -653,12 +697,12 @@ section{opacity:0;transform:translateY(40px)}
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nc">Get a Quote</a>
-  <div class="hbg" id="hbg" role="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></div>
+  <button class="hbg" id="hbg" aria-label="Open menu" aria-expanded="false" aria-controls="mn" tabindex="0"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOBILE NAV -->
 <div class="mn" id="mn" role="dialog" aria-modal="true">
-  <button class="mn-close" onclick="cM()" aria-label="Close">✕</button>
+  <button class="mn-close" onclick="cM()" aria-label="Close" tabindex="0">✕</button>
   <a href="#home" onclick="cM()">Home</a>
   <a href="#about" onclick="cM()">About</a>
   <a href="#services" onclick="cM()">Services</a>
@@ -770,6 +814,7 @@ section{opacity:0;transform:translateY(40px)}
   </div>
   <div style="flex:1;">
     <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Team collaboration" style="width:100%;border-radius:1.2rem;object-fit:cover;box-shadow:0 12px 40px rgba(201,168,76,0.25);border:1px solid rgba(201,168,76,0.2);">
+    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=80" alt="Team collaboration" style="width:100%;border-radius:1.2rem;object-fit:cover;box-shadow:0 12px 40px rgba(201,168,76,0.25);border:1px solid rgba(201,168,76,0.2);max-width:100%;height:auto;">
   </div>
 </section>
 
@@ -1067,11 +1112,42 @@ hbg.addEventListener('click',()=>{
   const o=mn.classList.toggle('op');
   const [s1,s2,s3]=hbg.querySelectorAll('span');
   hbg.setAttribute('aria-expanded',o);
-  if(o){s1.style.cssText='transform:translateY(8px) rotate(45deg)';s2.style.cssText='opacity:0;transform:scaleX(0)';s3.style.cssText='transform:translateY(-8px) rotate(-45deg)';document.body.style.overflow='hidden'}
-  else{[s1,s2,s3].forEach(s=>s.style.cssText='');document.body.style.overflow=''}
+  if(o){
+    s1.style.cssText='transform:translateY(8px) rotate(45deg)';
+    s2.style.cssText='opacity:0;transform:scaleX(0)';
+    s3.style.cssText='transform:translateY(-8px) rotate(-45deg)';
+    document.body.style.overflow='hidden';
+    // Focus trap for accessibility
+    setTimeout(()=>{
+      const firstLink = mn.querySelector('a');
+      if(firstLink) firstLink.focus();
+    }, 120);
+  }
+  else{
+    [s1,s2,s3].forEach(s=>s.style.cssText='');
+    document.body.style.overflow='';
+    hbg.focus();
+  }
 });
-function cM(){mn.classList.remove('op');hbg.querySelectorAll('span').forEach(s=>s.style.cssText='');hbg.setAttribute('aria-expanded','false');document.body.style.overflow=''}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')cM()});
+function cM(){
+  mn.classList.remove('op');
+  hbg.querySelectorAll('span').forEach(s=>s.style.cssText='');
+  hbg.setAttribute('aria-expanded','false');
+  document.body.style.overflow='';
+  hbg.focus();
+}
+// Keyboard accessibility for hamburger and menu
+document.addEventListener('keydown',e=>{
+  if(mn.classList.contains('op')){
+    if(e.key==='Escape') {cM();}
+    if(e.key==='Tab'){
+      const focusable = mn.querySelectorAll('a,button');
+      const first = focusable[0], last = focusable[focusable.length-1];
+      if(e.shiftKey && document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey && document.activeElement===last){e.preventDefault();first.focus();}
+    }
+  }
+});
 
 /* REVEAL */
 const ro=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');ro.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
